@@ -1,3 +1,5 @@
+package practice.PR1;
+
 public class Les1_1 {
 
     public static int countDuplicatePairs(int[] arr) {

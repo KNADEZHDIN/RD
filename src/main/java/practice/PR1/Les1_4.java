@@ -1,3 +1,5 @@
+package practice.PR1;
+
 import java.util.Arrays;
 
 public class Les1_4 {
