@@ -24,20 +24,49 @@ public class Les9 {
 //        System.out.println(findMiddleElement(node).val);
 
 
+//        ListNode node = new ListNode(1);
+//        node.next = new ListNode(2);
+//        node.next.next = new ListNode(3);
+//        node.next.next.next = new ListNode(4);
+//        node.next.next.next.next = new ListNode(5);
+//
+//        int countElement = 0;
+//        ListNode current = node;
+//        while (current != null) {
+//            countElement ++;
+//            System.out.println(current.val);
+//            current = current.next;
+//        }
+//        System.out.println(countElement);
+
+
         ListNode node = new ListNode(1);
         node.next = new ListNode(2);
         node.next.next = new ListNode(3);
         node.next.next.next = new ListNode(4);
         node.next.next.next.next = new ListNode(5);
-
-        int countElement = 0;
         ListNode current = node;
+        Deque<Integer> stack = new ArrayDeque<>();
         while (current != null) {
-            countElement ++;
-            System.out.println(current.val);
+            stack.push(current.val);
             current = current.next;
         }
-        //System.out.println(countElement);
+
+        ListNode nodeReverse = new ListNode(0);
+        ListNode dummy = nodeReverse;
+        while (!stack.isEmpty()) {
+            nodeReverse.next = new ListNode(stack.pop());
+            nodeReverse = nodeReverse.next;
+            //System.out.println(stack.pop());
+        }
+
+        ListNode curr = dummy.next;
+        while (curr != null) {
+            System.out.println(curr.val);
+            curr = curr.next;
+        }
+
+
 
     }
 
