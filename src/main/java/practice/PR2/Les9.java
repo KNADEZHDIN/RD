@@ -2,6 +2,7 @@ package practice.PR2;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import static java.lang.Math.max;
 
 public class Les9 {
 
@@ -9,11 +10,35 @@ public class Les9 {
 
 //        boolean res = isValid("(){}[]");
 
-        String[] logs = new String[] {"d1/", "d2/", "../", "d21/", "./"};
-        int res = minOperations(logs);
+//        String[] logs = new String[] {"d1/", "d2/", "../", "d21/", "./"};
+//        int res = minOperations2(logs);
+//        System.out.println(res);
 
-        
-        System.out.println(res);
+
+//        ListNode node = new ListNode(1);
+//        node.next = new ListNode(2);
+//        node.next.next = new ListNode(3);
+//        node.next.next.next = new ListNode(4);
+//        node.next.next.next.next = new ListNode(5);
+//        // 1 -> 2 -> 3 -> 4 -> 5
+//        System.out.println(findMiddleElement(node).val);
+
+
+        ListNode node = new ListNode(1);
+        node.next = new ListNode(2);
+        node.next.next = new ListNode(3);
+        node.next.next.next = new ListNode(4);
+        node.next.next.next.next = new ListNode(5);
+
+        int countElement = 0;
+        ListNode current = node;
+        while (current != null) {
+            countElement ++;
+            System.out.println(current.val);
+            current = current.next;
+        }
+        //System.out.println(countElement);
+
     }
 
     public static boolean isValid(String s) {
@@ -35,7 +60,6 @@ public class Les9 {
     }
 
     public static int minOperations(String[] logs) {
-
         Deque<String> stack = new ArrayDeque<>();
         for (String log: logs) {
             if ("../".equals(log)) {
@@ -47,5 +71,41 @@ public class Les9 {
         }
         return stack.size();
     }
+
+    public static int minOperations2(String[] logs) {
+        int counter = 0;
+        for (String log: logs) {
+            if ("../".equals(log)) {
+                counter = max(counter-1, 0);
+            } else if ("./".equals(log)) {
+            } else {
+                counter++;
+            }
+        }
+        return counter;
+    }
+
+    static class ListNode {
+        int val;
+        ListNode next;
+        ListNode(int val) {
+            this.val = val;
+            this.next = null;
+        }
+    }
+
+    public static ListNode findMiddleElement(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while (fast != null && fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        return slow;
+    }
+
+
 
 }
